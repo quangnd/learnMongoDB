@@ -16,6 +16,7 @@ function errorHandler(err, req, res, next) {
 }
 
 app.get('/', function(req, res, next) {
+    console.log(req.url);
     res.render('fruitPicker', { 'fruits' : [ 'apple', 'orange', 'banana', 'peach' ] });
 });
 
