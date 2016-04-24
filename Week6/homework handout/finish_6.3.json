@@ -1,0 +1,12 @@
+db.companies.aggregate([
+   { $match: { 
+        founded_year: 2004, 
+        "funding_rounds.4": { $exists: true, $ne:[]  }  //having 5 or more rounds of funding
+      }
+   },
+   { $project: { name:1, _id:0, 
+                  avg: { $avg: "$funding_rounds.raised_amount" }
+               } 
+   },
+   { $sort: { avg: 1 } }   
+])
